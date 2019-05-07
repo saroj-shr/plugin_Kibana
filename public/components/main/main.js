@@ -1,4 +1,5 @@
 import React from 'react';
+import Axiox from 'axios';
 import {
   EuiPage,
   EuiPageHeader,
@@ -7,14 +8,19 @@ import {
   EuiPageContent,
   EuiPageContentHeader,
   EuiPageContentBody,
-  EuiText
+  EuiText,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem
 } from '@elastic/eui';
+
+
 
 export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-  }
+  }  
 
   componentDidMount() {
     /*
@@ -22,10 +28,29 @@ export class Main extends React.Component {
        manage state and update your UI than this.
     */
     const { httpClient } = this.props;
+    // console.log(httpClient);
     httpClient.get('../api/REST/example').then((resp) => {
       this.setState({ time: resp.data.time });
     });
   }
+
+  sendRequest = () => {
+    Axiox.get('../api/REST/URL')
+    .then( (response) =>{
+      console.log(response.data);
+    })
+    .catch(err => console.log(err));
+  }
+
+  // sendRequest2 = () => {
+  // to send request 
+  //   const { httpClient } = this.props;
+  //   httpClient.get('../api/REST/URL')
+  //   .then( (res) => {
+  //     console.log(res);
+  //   })
+  // }
+  
   render() {
     const { title } = this.props;
     return (
@@ -57,7 +82,29 @@ export class Main extends React.Component {
               </EuiText>
             </EuiPageContentBody>
           </EuiPageContent>
+
+          <EuiPageContent>
+            <div>
+              
+              <EuiFlexGroup>
+                <EuiFlexItem grow={false}>
+                    <EuiButton fill onClick={this.sendRequest}>
+                        Request
+                    </EuiButton>
+                </EuiFlexItem>      
+              </EuiFlexGroup>
+              <EuiFlexGroup>
+                <EuiFlexItem grow={false}>
+                    <EuiButton fill onClick={this.sendRequest2}>
+                        Request
+                    </EuiButton>
+                </EuiFlexItem>      
+              </EuiFlexGroup>
+
+            </div>          
+          </EuiPageContent>
         </EuiPageBody>
+
       </EuiPage>
     );
   }
