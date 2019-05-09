@@ -12,6 +12,7 @@ const client = new Client({ node: "http://localhost:9200" });
 //   }
 // });
 
+//all index for matrixbeat
 client.search(
   {
     index: "metricbeat-*",
@@ -24,9 +25,16 @@ client.search(
   (err, result) => {
     if (err) console.log(err);
 
-    console.log(result.body.hits.hits);   
+    // console.log(result.body.hits.hits);   
+    result.body.hits.hits.map( (index) => {
+      console.log(index._index);
+      console.log(index._id);
+      // console.table(index._source.host);
+    } )
   }
 );
+
+
 
 export default function(server) {
   server.route({
@@ -63,11 +71,9 @@ export default function(server) {
         (err, result) => {
           if (err) console.log(err);
 
-          // console.log(result);
-          typeof(result);
-          return {
-            body: result
-          }
+          
+          
+          
         }
       );
 

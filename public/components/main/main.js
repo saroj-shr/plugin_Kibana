@@ -13,7 +13,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem
 } from '@elastic/eui';
-
+import Table from '../table/table';
 
 
 export class Main extends React.Component {
@@ -103,6 +103,17 @@ export class Main extends React.Component {
 
             </div>          
           </EuiPageContent>
+
+          <EuiPageContent>
+            <div>
+              
+              <EuiFlexGroup>
+                <Table />  
+              </EuiFlexGroup>
+
+            </div>          
+          </EuiPageContent>
+
         </EuiPageBody>
 
       </EuiPage>
