@@ -13,28 +13,20 @@ const client = new Client({ node: "http://localhost:9200" });
 // });
 
 //all index for matrixbeat
-client.search(
-  {
-    index: "metricbeat-*",
-    body: {
-      query: {
-        match_all: {}
-      }
-    }
-  },
-  (err, result) => {
-    if (err) console.log(err);
-
-    // console.log(result.body.hits.hits);   
-    result.body.hits.hits.map( (index) => {
-      console.log(index._index);
-      console.log(index._id);
-      // console.table(index._source.host);
-    } )
-  }
-);
+const temp = new Object();
+const indexs = [];
 
 
+
+// client.search({
+//   index: "metricbeat-*",
+//   body: {
+//     query: {
+//       match_all: {}
+//     }
+//   }
+// })
+// .resolve();
 
 export default function(server) {
   server.route({
@@ -56,28 +48,20 @@ export default function(server) {
   });
 
   server.route({
-    path: "/api/REST/search",
+    path: '/api/REST/result',
     method: "GET",
-    handler() {
-      client.search(
-        {
-          index: "metricbeat-*",
-          body: {
-            query: {
-              match_all: {}
-            }
+    handler(){
+      let indexs = client.search({
+        index: "metricbeat-*",
+        body: {
+          _source: "false",
+          query:{            
+            match_all:{}
           }
-        },
-        (err, result) => {
-          if (err) console.log(err);
-
-          
-          
-          
         }
-      );
+      });
 
-      
+      return indexs;
     }
   });
 }

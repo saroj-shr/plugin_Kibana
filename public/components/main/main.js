@@ -14,43 +14,31 @@ import {
   EuiFlexItem
 } from '@elastic/eui';
 import Table from '../table/table';
+import IndexTable from '../index/index_table';
 
 
 export class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      index: []
+    };
+    this.getIndex();
   }  
 
-  componentDidMount() {
-    /*
-       FOR EXAMPLE PURPOSES ONLY.  There are much better ways to
-       manage state and update your UI than this.
-    */
-    const { httpClient } = this.props;
-    // console.log(httpClient);
-    httpClient.get('../api/REST/example').then((resp) => {
-      this.setState({ time: resp.data.time });
-    });
-  }
-
-  sendRequest = () => {
-    Axiox.get('../api/REST/URL')
+  getIndex = () => {
+    Axiox.get('../api/REST/result')
     .then( (response) =>{
-      console.log(response.data);
+      const indexs = response.data.body.hits.hits;
+      this.setState({index : indexs });      
     })
     .catch(err => console.log(err));
   }
+ 
+  getPDF = () => {
+    console.log('Pdf')
+  }
 
-  // sendRequest2 = () => {
-  // to send request 
-  //   const { httpClient } = this.props;
-  //   httpClient.get('../api/REST/URL')
-  //   .then( (res) => {
-  //     console.log(res);
-  //   })
-  // }
-  
   render() {
     const { title } = this.props;
     return (
@@ -85,22 +73,11 @@ export class Main extends React.Component {
 
           <EuiPageContent>
             <div>
-              
               <EuiFlexGroup>
                 <EuiFlexItem grow={false}>
-                    <EuiButton fill onClick={this.sendRequest}>
-                        Request
-                    </EuiButton>
-                </EuiFlexItem>      
+                  <EuiButton fill onClick={this.getIndex}>Request</EuiButton>
+                </EuiFlexItem>
               </EuiFlexGroup>
-              <EuiFlexGroup>
-                <EuiFlexItem grow={false}>
-                    <EuiButton fill onClick={this.sendRequest2}>
-                        Request
-                    </EuiButton>
-                </EuiFlexItem>      
-              </EuiFlexGroup>
-
             </div>          
           </EuiPageContent>
 
@@ -108,7 +85,7 @@ export class Main extends React.Component {
             <div>
               
               <EuiFlexGroup>
-                <Table />  
+                <IndexTable indexs={this.state.index} />  
               </EuiFlexGroup>
 
             </div>          
