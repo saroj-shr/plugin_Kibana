@@ -4,7 +4,7 @@ import {
   } from '@elastic/eui';
 
 function IndexTable(props) {
-    console.table(props.indexs);
+    console.table(props);
 
   return <div />;
 }
