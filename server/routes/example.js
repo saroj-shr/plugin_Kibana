@@ -63,5 +63,5 @@ export default function(server) {
 
       return indexs;
     }
-  });
+  }); 
 }
