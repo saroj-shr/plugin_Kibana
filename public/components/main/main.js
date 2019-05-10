@@ -15,24 +15,37 @@ import {
 } from '@elastic/eui';
 import Table from '../table/table';
 import MetrixTable from '../index/metrix_table';
-
+import IndexTable from '../index/index_table';
 
 export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: []
+      index: [],
+      indexTable:[],
+      indexTableCol:[],
     };
+
+    // this.getMetrix();
     this.getIndex();
   }  
 
-  getIndex = () => {
+  getMetrix = () => {
     Axiox.get('../api/REST/result')
     .then( (response) =>{
-      const indexs = response.data.body.hits.hits;
-      this.setState({index : indexs });      
+      const indexs = response.data.body.hits.hits;      
+      this.setState({index : indexs });        
     })
     .catch(err => console.log(err));
+  }
+
+  getIndex = () =>{
+    let i = Axiox.get('../api/REST/indexs');
+    i.then( (response ) =>{  
+      this.setState({indexTableCol: response});
+     console.log( response);
+    })
+    
   }
  
   getPDF = () => {
@@ -41,6 +54,7 @@ export class Main extends React.Component {
 
   render() {
     const { title } = this.props;
+    const cols = this.state.indexTable;
     return (
       <EuiPage>
         <EuiPageBody>
@@ -56,10 +70,17 @@ export class Main extends React.Component {
             <div>
               <EuiFlexGroup>
                 <EuiFlexItem grow={false}>
-                  <EuiButton fill onClick={this.getIndex}>Request</EuiButton>
+                  <EuiButton fill onClick={this.getMetrix}>Metrix</EuiButton>
                 </EuiFlexItem>
               </EuiFlexGroup>
             </div>          
+            <div>
+            <EuiFlexGroup>
+                <EuiFlexItem grow={false}>
+                  <EuiButton fill onClick={this.getIndex}>INdexs</EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </div>
           </EuiPageContent>
 
           <EuiPageContent>
@@ -67,6 +88,16 @@ export class Main extends React.Component {
               
               <EuiFlexGroup>
                 <MetrixTable indexs={this.state.index} />  
+              </EuiFlexGroup>
+
+            </div>          
+          </EuiPageContent>
+
+          <EuiPageContent>
+            <div>
+              
+              <EuiFlexGroup>
+                <IndexTable response={this.state.indexTable} ></IndexTable>
               </EuiFlexGroup>
 
             </div>          

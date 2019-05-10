@@ -12,31 +12,32 @@ export class IndexTable extends Component {
     constructor(props){
         super(props);
         this.state = {
-            columns: [
-                {
-                    field: '_id',
-                    name: '_id'
-                },{
-                    field: '_index',
-                    name: '_index'
-                },{
-                    field: '_type',
-                    name:'_type'
-                }                
-            ]
+            // columns: props.indexs.body[0]
+        }
+
+        // if(this.props.response.length === 0) return null; 
+
+        this.check();
+    }
+
+    check = () => {
+        if(!this.props.responce){
+            console.log('not ready');
+            return ;
         }
     }
 
+
     render() {
-    return (
-        <div>
-            <EuiBasicTable
-                items={this.props.indexs}
-                columns={this.state.columns}
-            />
-        </div>
-    )
-  }
+        return (
+            <div>
+                {/* <EuiBasicTable
+                    items={this.props.indexs}
+                    columns={this.state.columns}
+                /> */}
+            </div>
+        )
+    }
 }
 
 export default IndexTable
