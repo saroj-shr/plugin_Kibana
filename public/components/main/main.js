@@ -14,7 +14,7 @@ import {
   EuiFlexItem
 } from '@elastic/eui';
 import Table from '../table/table';
-import IndexTable from '../index/index_table';
+import MetrixTable from '../index/metrix_table';
 
 
 export class Main extends React.Component {
@@ -50,26 +50,7 @@ export class Main extends React.Component {
                 {title} Hello World!
               </h1>
             </EuiTitle>
-          </EuiPageHeader>
-          <EuiPageContent>
-            <EuiPageContentHeader>
-              <EuiTitle>
-                <h2>
-                    Congratulations
-                </h2>
-              </EuiTitle>
-            </EuiPageContentHeader>
-            <EuiPageContentBody>
-              <EuiText>
-                <h3>
-                    You have successfully created your first Kibana Plugin!
-                </h3>
-                <p>
-                    The server time (via API call) is {this.state.time || 'NO API CALL YET'}
-                </p>
-              </EuiText>
-            </EuiPageContentBody>
-          </EuiPageContent>
+          </EuiPageHeader>          
 
           <EuiPageContent>
             <div>
@@ -85,11 +66,22 @@ export class Main extends React.Component {
             <div>
               
               <EuiFlexGroup>
-                <IndexTable indexs={this.state.index} />  
+                <MetrixTable indexs={this.state.index} />  
               </EuiFlexGroup>
 
             </div>          
           </EuiPageContent>
+
+
+          {/* <EuiPageContent>
+            <div>
+              
+              <EuiFlexGroup>
+                <Table indexs={this.state.index} />  
+              </EuiFlexGroup>
+
+            </div>          
+          </EuiPageContent> */}
 
         </EuiPageBody>
 

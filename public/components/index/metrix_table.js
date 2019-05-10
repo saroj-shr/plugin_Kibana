@@ -7,7 +7,7 @@ import {
     EuiLink
   } from '@elastic/eui';
 
-export class IndexTable extends Component {
+export class MetrixTable extends Component {
 
     constructor(props){
         super(props);
@@ -22,7 +22,7 @@ export class IndexTable extends Component {
                 },{
                     field: '_type',
                     name:'_type'
-                }                
+                }
             ]
         }
     }
@@ -39,4 +39,4 @@ export class IndexTable extends Component {
   }
 }
 
-export default IndexTable
+export default MetrixTable

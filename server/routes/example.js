@@ -63,5 +63,14 @@ export default function(server) {
 
       return indexs;
     }
-  }); 
+  });
+
+  server.route({
+    path: '/api/REST/indexs',
+    method: "GET",
+    handler(){
+      let indexs = client.cat.indices();      
+      return indexs;
+    }
+  });
 }
