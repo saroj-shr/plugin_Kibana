@@ -11,7 +11,8 @@ import {
   EuiText,
   EuiButton,
   EuiFlexGroup,
-  EuiFlexItem
+  EuiFlexItem,
+  EuiPageContentHeaderSection
 } from '@elastic/eui';
 import Table from '../table/table';
 import MetrixTable from '../index/metrix_table';
@@ -62,7 +63,7 @@ export class Main extends React.Component {
             </EuiTitle>
           </EuiPageHeader>          
 
-          <EuiPageContent>
+          {/* <EuiPageContent>
             <div>
               <EuiFlexGroup>
                 <EuiFlexItem grow={false}>
@@ -77,28 +78,40 @@ export class Main extends React.Component {
                 </EuiFlexItem>
               </EuiFlexGroup>
             </div>
-          </EuiPageContent>
+          </EuiPageContent> */}
 
-          <EuiPageContent>
+          {/* <EuiPageContent>
             <div>
-              
+   
               <EuiFlexGroup>
                 <MetrixTable indexs={this.state.index} />  
               </EuiFlexGroup>
 
             </div>          
-          </EuiPageContent>
+          </EuiPageContent> */}
 
-          <EuiPageContent>
-            <div>
+            <EuiPageContent>
+              <EuiPageContentHeader>
+                <EuiPageContentHeaderSection>
+                  <EuiTitle>
+                    <h2>Content title</h2>
+                  </EuiTitle>
+                </EuiPageContentHeaderSection>
+                
+                <EuiPageContentHeaderSection>
+                  Download this table 
+                
+                </EuiPageContentHeaderSection>
+              </EuiPageContentHeader>
               
-              <EuiFlexGroup>
-                {this.state.indexTable && this.state.indexTable.body && this.state.indexTable.body.length > 0 &&  <IndexTable response={this.state.indexTable}  ref={this.tableRef}></IndexTable> }
-              </EuiFlexGroup>
-
-            </div>          
+              <EuiPageContentBody>
+                <EuiFlexGroup>
+                    {this.state.indexTable && this.state.indexTable.body && this.state.indexTable.body.length > 0 &&  <IndexTable response={this.state.indexTable}  ref={this.tableRef}></IndexTable> }
+                </EuiFlexGroup>
+              </EuiPageContentBody>
+            
+          
           </EuiPageContent>
-
 
           {/* <EuiPageContent>
             <div>
