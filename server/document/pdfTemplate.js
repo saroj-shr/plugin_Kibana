@@ -14,19 +14,6 @@ module.exports = (data) => {
 
         }
     }
-
-
-    
-    // data.body.map(i => {
-    //     for(let j = 0; j < cols.length; j++){
-    //         dataString += cols[j];
-    //         // dataString += " : ";
-    //         dataString += i.cols[j]
-    //         dataString += "<br>";
-    //     }      
-    // });
-
-    Object.keys(data.body)
     return `
     <!DOCTYPE html>
     <html lang="en">

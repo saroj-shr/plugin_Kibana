@@ -20,8 +20,7 @@ export class IndexTable extends Component {
         });
     }
 
-    render() {
-        console.log(this.props.response);
+    render() {        
         return (
             <div>
                 <EuiBasicTable
