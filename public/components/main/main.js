@@ -42,7 +42,6 @@ export class Main extends React.Component {
     Axiox.get('../api/REST/indexs')
     .then( (response ) =>{  
       this.setState({indexTable: response.data});
-    //  console.log( response);
     })    
   }
  
@@ -51,8 +50,7 @@ export class Main extends React.Component {
   }
 
   render() {
-    const { title } = this.props;  
-    // console.log(this.state.indexTable && this.state.indexTable.body)
+    const { title } = this.props;      
     return (
       <EuiPage>
         <EuiPageBody>

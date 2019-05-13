@@ -12,23 +12,27 @@ export class IndexTable extends Component {
     constructor(props){
         super(props);
         this.state = {
-            // columns: props.indexs.body[0]
+            columns: [],
+            items:[]
         }
-        
 
-        // if(this.props.response.length === 0) return null; 
-
-        this.check();
+        this.columns();
+        console.log(this.state.columns);              
     }
 
-    componentWillMount(){
-        this.check();
-    }
+    columns = () =>{ 
+        let array =[];
+        Object.keys(this.props.response.body[0]).forEach( (element) => {
+            let temp = {
+                field: element,
+                name: element
+            };            
+            array.push(temp);                    
+        });
 
-    check = () => {        
-        console.log(this.props.response.body, 'ok');        
+        console.log(array);
+        this.setState({columns: array});
     }
-
 
     render() {
         console.log(this.props.response);
