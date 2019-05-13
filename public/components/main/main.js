@@ -15,6 +15,7 @@ import {
   EuiPageContentHeaderSection
 } from '@elastic/eui';
 
+import saveAs from 'file-saver';
 import IndexTable from '../index/index_table';
 
 export class Main extends React.Component {
@@ -46,7 +47,11 @@ export class Main extends React.Component {
   }
  
   getPDF = () => {
-    console.log('Pdf')
+    Axiox.get('../api/REST/createPdf', { responseType: 'blob'})    
+    .then( (response) => {      
+      const pdfBlob = new Blob ([response.data], {type : 'application/pdf'});
+      saveAs(pdfBlob, 'generatedPdf.pdf');
+    })
   }
 
   render() {
@@ -73,7 +78,7 @@ export class Main extends React.Component {
                   <EuiFlexGroup gutterSize="s" alignItems="center">
                     <EuiFlexItem grow={false}>
                       <EuiButton
-                        onClick={() => window.alert('Button clicked')}
+                        onClick={() => this.getPDF()}
                         iconType="exportAction"
                       >
                         PDF

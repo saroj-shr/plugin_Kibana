@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import {
-    EuiBasicTable,
-    EuiButton,
-    EuiFlexGroup,
-    EuiFlexItem,
-    EuiLink
+    EuiBasicTable
   } from '@elastic/eui';
 
 export class IndexTable extends Component {

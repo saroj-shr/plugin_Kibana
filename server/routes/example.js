@@ -1,4 +1,6 @@
 const { Client } = require("@elastic/elasticsearch");
+const pdfTemplate = require('../document/pdfTemplate');
+const pdf = require("html-pdf");
 const client = new Client({ node: "http://localhost:9200" });
 
 export default function(server) {
@@ -44,6 +46,34 @@ export default function(server) {
     handler(){
       let indexs = client.cat.indices({format: "json"});
       return (indexs);
+    }
+  });
+
+  server.route({
+    path: '/api/REST/createPdf',
+    method: "GET",
+    handler(req, res){  
+
+      client.cat.indices({format: "json"})
+      .then( response => {
+
+        console.log(response.body);
+        
+        pdf.create(pdfTemplate(response.body), {}).toFile(`result.pdf`,
+          (err)=>{
+            if(err){
+              console.log(err);
+            }
+  
+            Promise.resolve();
+          }           
+        );
+        
+      })
+
+
+        // return 'ehy';
+      return res.file(`result.pdf`);
     }
   });
 }
