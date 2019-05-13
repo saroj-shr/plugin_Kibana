@@ -22,10 +22,9 @@ export class Main extends React.Component {
     super(props);
     this.state = {
       index: [],
-      indexTable:[],
-      indexTableCol:[],
+      indexTable:[]  
     };
-
+    
     // this.getMetrix();
     this.getIndex();
   }  
@@ -40,12 +39,11 @@ export class Main extends React.Component {
   }
 
   getIndex = () =>{
-    let i = Axiox.get('../api/REST/indexs');
-    i.then( (response ) =>{  
-      this.setState({indexTableCol: response});
-     console.log( response);
-    })
-    
+    Axiox.get('../api/REST/indexs')
+    .then( (response ) =>{  
+      this.setState({indexTable: response.data});
+    //  console.log( response);
+    })    
   }
  
   getPDF = () => {
@@ -53,8 +51,8 @@ export class Main extends React.Component {
   }
 
   render() {
-    const { title } = this.props;
-    const cols = this.state.indexTable;
+    const { title } = this.props;  
+    // console.log(this.state.indexTable && this.state.indexTable.body)
     return (
       <EuiPage>
         <EuiPageBody>
@@ -97,7 +95,7 @@ export class Main extends React.Component {
             <div>
               
               <EuiFlexGroup>
-                <IndexTable response={this.state.indexTable} ></IndexTable>
+                {this.state.indexTable && this.state.indexTable.body && this.state.indexTable.body.length > 0 &&  <IndexTable response={this.state.indexTable}  ref={this.tableRef}></IndexTable> }
               </EuiFlexGroup>
 
             </div>          

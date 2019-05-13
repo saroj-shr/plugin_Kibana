@@ -14,21 +14,24 @@ export class IndexTable extends Component {
         this.state = {
             // columns: props.indexs.body[0]
         }
+        
 
         // if(this.props.response.length === 0) return null; 
 
         this.check();
     }
 
-    check = () => {
-        if(!this.props.responce){
-            console.log('not ready');
-            return ;
-        }
+    componentWillMount(){
+        this.check();
+    }
+
+    check = () => {        
+        console.log(this.props.response.body, 'ok');        
     }
 
 
     render() {
+        console.log(this.props.response);
         return (
             <div>
                 {/* <EuiBasicTable
