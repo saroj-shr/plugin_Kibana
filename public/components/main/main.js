@@ -14,8 +14,7 @@ import {
   EuiFlexItem,
   EuiPageContentHeaderSection
 } from '@elastic/eui';
-import Table from '../table/table';
-import MetrixTable from '../index/metrix_table';
+
 import IndexTable from '../index/index_table';
 
 export class Main extends React.Component {
@@ -58,49 +57,29 @@ export class Main extends React.Component {
           <EuiPageHeader>
             <EuiTitle size="l">
               <h1>
-                {title} Hello World!
+                {title}
               </h1>
             </EuiTitle>
           </EuiPageHeader>          
-
-          {/* <EuiPageContent>
-            <div>
-              <EuiFlexGroup>
-                <EuiFlexItem grow={false}>
-                  <EuiButton fill onClick={this.getMetrix}>Metrix</EuiButton>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </div>          
-            <div>
-            <EuiFlexGroup>
-                <EuiFlexItem grow={false}>
-                  <EuiButton fill onClick={this.getIndex}>INdexs</EuiButton>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </div>
-          </EuiPageContent> */}
-
-          {/* <EuiPageContent>
-            <div>
-   
-              <EuiFlexGroup>
-                <MetrixTable indexs={this.state.index} />  
-              </EuiFlexGroup>
-
-            </div>          
-          </EuiPageContent> */}
-
             <EuiPageContent>
               <EuiPageContentHeader>
                 <EuiPageContentHeaderSection>
                   <EuiTitle>
-                    <h2>Content title</h2>
+                    <h2>All Index</h2>
                   </EuiTitle>
                 </EuiPageContentHeaderSection>
                 
                 <EuiPageContentHeaderSection>
-                  Download this table 
-                
+                  <EuiFlexGroup gutterSize="s" alignItems="center">
+                    <EuiFlexItem grow={false}>
+                      <EuiButton
+                        onClick={() => window.alert('Button clicked')}
+                        iconType="exportAction"
+                      >
+                        PDF
+                      </EuiButton>
+                    </EuiFlexItem>              
+                  </EuiFlexGroup>                   
                 </EuiPageContentHeaderSection>
               </EuiPageContentHeader>
               
@@ -112,16 +91,6 @@ export class Main extends React.Component {
             
           
           </EuiPageContent>
-
-          {/* <EuiPageContent>
-            <div>
-              
-              <EuiFlexGroup>
-                <Table indexs={this.state.index} />  
-              </EuiFlexGroup>
-
-            </div>          
-          </EuiPageContent> */}
 
         </EuiPageBody>
 
