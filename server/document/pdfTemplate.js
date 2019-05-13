@@ -1,5 +1,32 @@
 module.exports = (data) => {    
-    const date = new Date();    
+    const date = new Date();
+
+    let table = '';
+    
+    for(let i = 0; i < data.body.length; i++){
+        let items = Object.values(data.body[i]);
+        let cols = Object.keys(data.body[i]);
+        table += `<h3>${items[2]}</h3>`;
+        for(let i = 0; i < items.length; i++){            
+            table += '<table>';
+            table += `<tr><td>${cols[i]}: </td><td>${items[i]}</td></tr>`;
+            table += '</table>';
+
+        }
+    }
+
+
+    
+    // data.body.map(i => {
+    //     for(let j = 0; j < cols.length; j++){
+    //         dataString += cols[j];
+    //         // dataString += " : ";
+    //         dataString += i.cols[j]
+    //         dataString += "<br>";
+    //     }      
+    // });
+
+    Object.keys(data.body)
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -11,7 +38,9 @@ module.exports = (data) => {
     </head>
     <body>
         <h1>${date}</h1>
-        ${data}
+        
+            ${table}
+        
     </body>
     </html> 
     `;
